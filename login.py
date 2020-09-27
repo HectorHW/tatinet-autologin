@@ -1,5 +1,8 @@
 from selenium.common.exceptions import NoSuchElementException
 
+import time
+import sys
+
 from utils import read_credentials
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
@@ -7,6 +10,11 @@ from selenium.webdriver.firefox.options import Options
 from config import GECKOPATH, CREDENTIALS_PATH
 
 if __name__ == '__main__':
+
+    if '--nosleep' not in sys.argv:
+        print("sleeping for 15 secs, disable with --nosleep")
+        time.sleep(15)
+
     login, passw = read_credentials(CREDENTIALS_PATH)
 
     options = Options()
